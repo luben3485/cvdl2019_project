@@ -1,15 +1,15 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
-from mainWindow import Ui_MainWindow
+from camera_UiDesign import Ui_MainWindow
 import cv2
 import numpy as np
 import glob
-import camera
+import camera_utils
 
-class mainGUI(QtWidgets.QMainWindow, Ui_MainWindow):
+class camera_GUI(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self,parent=None):
-        super(mainGUI, self).__init__(parent=parent)
+        super(camera_GUI, self).__init__(parent=parent)
         self.setupUi(self)
 
         # push button
@@ -17,7 +17,7 @@ class mainGUI(QtWidgets.QMainWindow, Ui_MainWindow):
         self.intrinsic.clicked.connect(self.findIntrinsic)
         self.distortion.clicked.connect(self.findDistortion)
         self.extrinsic.clicked.connect(self.findExtrinsic)
-        self.augmentedreality.clicked.connect(camera.augmentedReality)
+        self.augmentedreality.clicked.connect(camera_utils.augmentedReality)
         self.findcontour.clicked.connect(self.contour)
         self.perspective.clicked.connect(self.perspectiveTransform)
         self.rotation.clicked.connect(self.rotation_scaling_translation)
@@ -128,6 +128,6 @@ class mainGUI(QtWidgets.QMainWindow, Ui_MainWindow):
 
 if __name__ == '__main__':  
     app = QtWidgets.QApplication(sys.argv)
-    main_gui = mainGUI()
-    main_gui.show()
+    camera_gui = camera_GUI()
+    camera_gui.show()
     sys.exit(app.exec_()) 
